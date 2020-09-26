@@ -24,7 +24,7 @@ std::istream& operator>>(std::istream& OurIn, LogicMatrix& OurLogicMatrix)
 			}
 		}
 	}
-	catch(const char& string){
+	catch (const char& string) {
 		std::cout << string;
 	}
 	return OurIn;
@@ -32,7 +32,7 @@ std::istream& operator>>(std::istream& OurIn, LogicMatrix& OurLogicMatrix)
 
 LogicMatrix& operator||(LogicMatrix& Left, LogicMatrix& Right)
 {
-	static LogicMatrix Result(Right.colums,Right.rows);
+	static LogicMatrix Result(Right.colums, Right.rows);
 	for (int i = 0; i < Left.rows; i++) {
 		for (int j = 0; j < Left.colums; j++) {
 			if (Left.OurLogicMatrix[i][j] || Right.OurLogicMatrix[i][j])
@@ -66,7 +66,7 @@ LogicMatrix::LogicMatrix(int& col, int& rows)
 {
 	this->colums = col;
 	this->rows = rows;
-	this->OurLogicMatrix = new bool*[this->rows];
+	this->OurLogicMatrix = new bool* [this->rows];
 	for (int i = 0; i < rows; i++) {
 		this->OurLogicMatrix[i] = new bool[this->colums];
 	}
@@ -79,13 +79,14 @@ LogicMatrix::LogicMatrix(int& col, int& rows)
 
 LogicMatrix::~LogicMatrix()
 {
-	for (int i = 0; i < this->rows; ++i) {
-		delete[] OurLogicMatrix[i];
+	if (this->OurLogicMatrix[0] != NULL) {
+		for (int i = 0; i < this->rows; ++i) {
+			delete this->OurLogicMatrix[i];
+		}
+		delete this->OurLogicMatrix;
+		this->OurLogicMatrix[0] = NULL;
 	}
-	delete[] OurLogicMatrix;
-
-	/*delete& colums;
-	delete& rows;*/
+	
 }
 
 bool** LogicMatrix::get_matrix()

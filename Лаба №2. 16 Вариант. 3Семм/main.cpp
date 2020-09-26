@@ -9,7 +9,7 @@ int main() {
 	cin >> rows;
 	cout << "Input Colums: ";
 	cin >> colums;
-	LogicMatrix A(colums, rows), B(colums, rows), C;
+	static LogicMatrix A(colums, rows), B(colums, rows), C;
 
 	//Рандомный ввод матриц 
 	srand(time(NULL));
@@ -18,13 +18,14 @@ int main() {
 	cout << B << endl;
 	C = A || B;
 	cout << C << endl;
-
+	//C.~LogicMatrix();
 	/*Ручной ввод матриц*/
 	cin >> A >> B;
 	cout << A << endl;
 	cout << B << endl;
-	C = (A || B);
+	C = A || B;
 	cout << C << endl;
 	
+
 	return 0;
 }

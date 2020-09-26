@@ -14,7 +14,7 @@ public:
 	void set_matrix(int& col, int&rows);
 
 	void random_matrix();
-
+	
 	//Перегрузки операторов
 	friend std::ostream& operator<< (std::ostream& OurOut, LogicMatrix& OurLogicMatrix);
 	friend std::istream& operator>> (std::istream& OurIn, LogicMatrix& OurLogicMatrix);
@@ -25,3 +25,5 @@ private:
 	bool** OurLogicMatrix;
 	int colums, rows;
 };
+
+
